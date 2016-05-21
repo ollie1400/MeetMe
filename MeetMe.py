@@ -67,20 +67,38 @@ def main():
     service = SetupConnection()
     
     print('Downloading free/busy information')
+    
+    
+    
+#    print('Downloading free/busy information')
+#
+#    calid = input("Enter your calendar id (probably your e-mail address): ");
+#    fbquery = {
+#        "timeMin" : "2016-05-21T12:15:21.848000Z",
+#        "timeMax" : "2016-05-29T12:14:21.848000Z",
+#        "items" : [
+#            {
+#                "id" : calid
+#            }
+#        ]
+#    }
+#    
+#    fbdata = service.freebusy().query(body=fbquery).execute()
+#    print(fbdata)
 
-    calid = input("Enter your calendar id (probably your e-mail address): ");
-    fbquery = {
+    print('Downloading event information')
+
+    equery = {
+        "calendarId" : "primary",
         "timeMin" : "2016-05-21T12:15:21.848000Z",
         "timeMax" : "2016-05-29T12:14:21.848000Z",
-        "items" : [
-            {
-                "id" : calid
-            }
-        ]
     }
+    tmin = "2016-05-21T12:15:21.848000Z";
+    tmax = "2016-05-29T12:15:21.848000Z";
     
-    fbdata = service.freebusy().query(body=fbquery).execute()
-    print(fbdata)
-
+    edata = service.events().list(calendarId="primary",timeMin=tmin,timeMax=tmax).execute()
+    print(edata)
+    
+    
 if __name__ == '__main__':
     main()
