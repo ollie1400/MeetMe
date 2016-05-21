@@ -30,6 +30,7 @@ def VectoriseEvents(events,dt,timeMin,timeMax):
     # how many entries?
     nentries = len(events['items'])
     for i in range(0,nentries):
+        
         pass
         
     
@@ -57,3 +58,14 @@ How many time intervals of dt between two datetimes?
 def IntervalsBetweenDateTimes(t1, t2, dt):
     numIntervals = (t2 - t1).total_seconds() / (3600  * dt)
     return numIntervals
+    
+    
+    
+def main():
+        
+    t1 = datetime.datetime.now();
+    t2 = t1 + datetime.timedelta(days=1)
+    
+    VectoriseEvents(0, 1, t1, t2)
+if __name__ == '__main__':
+    main()
