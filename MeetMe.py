@@ -13,6 +13,7 @@ from apiclient import discovery
 import oauth2client
 from oauth2client import client
 from oauth2client import tools
+from VectoriseEvents import VectoriseEvents
 
 import datetime
 
@@ -88,17 +89,15 @@ def main():
 
     print('Downloading event information')
 
-    equery = {
-        "calendarId" : "primary",
-        "timeMin" : "2016-05-21T12:15:21.848000Z",
-        "timeMax" : "2016-05-29T12:14:21.848000Z",
-    }
+
     tmin = "2016-05-21T12:15:21.848000Z";
     tmax = "2016-05-29T12:15:21.848000Z";
     
     edata = service.events().list(calendarId="primary",timeMin=tmin,timeMax=tmax).execute()
     print(edata)
     
+    # vectorise the events
+    VectoriseEvents(edata,1)
     
 if __name__ == '__main__':
     main()
